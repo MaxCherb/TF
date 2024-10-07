@@ -1,0 +1,17 @@
+name: Plan
+
+on:
+  pull_request:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      - main
+    types: 
+      - opened
+
+jobs: 
+  hi_mark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: openning
+        run: echo "lets started planning"
+  
