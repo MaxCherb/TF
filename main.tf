@@ -53,7 +53,7 @@ resource "yandex_compute_instance" "this" {
   metadata = {
     # foo      = "bar"
     # ssh-keys = "ubuntu:${file("/Users/mchernikov/.ssh/id_ed25519.pub")}"
-    user-data = "${file("/Users/mchernikov/my-cloud-training-terraform-project/cloud-init")}"
+    # user-data = "${file("/Users/mchernikov/my-cloud-training-terraform-project/cloud-init")}"
   }
 
   boot_disk {
