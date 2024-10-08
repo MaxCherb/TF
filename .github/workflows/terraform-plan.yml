@@ -15,7 +15,7 @@ on:
 #   CONFIG_DIRECTORY: "./"
 
 jobs: 
-  hi_mark:
+  openning:
     runs-on: ubuntu-latest
     steps:
       - name: openning
