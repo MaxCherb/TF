@@ -35,4 +35,4 @@ jobs:
 
 
       - run: echo ${{ secrets.YC_OATH_TOKEN }} | yc init
-      - run: yc iam create-token
+    #   - run: yc iam create-token
