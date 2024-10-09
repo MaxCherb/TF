@@ -35,10 +35,10 @@ jobs:
       - name: common commands
         run: ls && pwd
 
-    #   - name: IAM Token
-    #     id: issue-iam-token
-    #     uses: yc-actions/yc-iam-token@v1
-    #     with:
-    #       yc-key-id: ${{ secrets.YC_KEY_ID }}
-    #       yc-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
-    #       yc-private-key: ${{ secrets.YC_PRIVATE_KEY }}
+      - name: IAM Token
+        id: issue-iam-token
+        uses: yc-actions/yc-iam-token@v1
+        with:
+          yc-key-id: ${{ secrets.YC_KEY_ID }}
+          yc-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
+          yc-private-key: ${{ secrets.YC_PRIVATE_KEY }}
