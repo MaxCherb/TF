@@ -33,7 +33,7 @@ jobs:
         with:
           enable-cache: true
       - name: common commands
-        run: ls && ps aux && ifconfig
+        run: ls && pwd
 
     #   - name: IAM Token
     #     id: issue-iam-token
