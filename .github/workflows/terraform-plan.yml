@@ -10,9 +10,9 @@ on:
 #     types:
 #       - opened
   
-# env:
+env:
 #   TF_CLOUD_ORGANIZATION: "yandex-cloud"
-#   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  YC_PUBLIC_KEY: "${{ vars.YC_PUBLIC_KEY }}"
 #   TF_WORKSPACE: "learn-terraform-github-actions"
 #   CONFIG_DIRECTORY: "./"
 
