@@ -1,20 +1,11 @@
 name: Terraform plan
 
 on:
-  push:
+  pull_request:
     branches:
-      - test
-#   pull_request:
-#     branches:
-#       - main
-#     types:
-#       - opened
-  
-# env:
-# #   TF_CLOUD_ORGANIZATION: "yandex-cloud"
-#   YC_PUBLIC_KEY: "${{ vars.YC_PUBLIC_KEY }}"
-# #   TF_WORKSPACE: "learn-terraform-github-actions"
-# #   CONFIG_DIRECTORY: "./"
+      - main
+    types:
+      - opened
 
 jobs: 
   openning:
