@@ -29,4 +29,5 @@ jobs:
       - name: Apply
         run: |
           terraform init
+          terraform validate
           terraform apply -var "cloud_id=${{secrets.YC_CLOUD_ID}}" -var "folder_id=${{secrets.YC_CLOUD_ID}}" -var "yc_iam_token=${{steps.issue-iam-token.outputs}}"
