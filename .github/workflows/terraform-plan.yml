@@ -8,7 +8,7 @@ on:
       - opened
 
 jobs: 
-  openning:
+  if_created:
     runs-on: ubuntu-latest
     steps:
       - name: openning
@@ -19,12 +19,6 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
 
-    #   - name: setup yc
-    #     uses: nightstory/setup-yc@v1
-    #     with:
-    #       enable-cache: true
-    #   - name: common commands
-    #     run: ls && pwd
 
       - name: IAM Token
         id: issue-iam-token
