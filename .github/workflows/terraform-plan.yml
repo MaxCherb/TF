@@ -33,6 +33,10 @@ jobs:
         with:
           enable-cache: true
 
-
-      - run: echo ${{ secrets.YC_OATH_TOKEN }} | yc init << 1
-    #   - run: yc iam create-token
+      - name: IAM Token
+        id: issue-iam-token
+        uses: yc-actions/yc-iam-token@v1
+        with:
+          yc-key-id: ${{ secrets.YC_KEY_ID }}
+          yc-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
+          yc-private-key: ${{ secrets.YC_PRIVATE_KEY }}
