@@ -42,4 +42,4 @@ jobs:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
       - name: Plan
-        run: terraform plan -var "cloud_id=${{secrets.YC_CLOUD_ID}}" -var "folder_id=${{secrets.YC_CLOUD_ID}}" -var "yc_iam_token=${{steps.issue-iam-token}}"
+        run: terraform plan -var "cloud_id=${{secrets.YC_CLOUD_ID}}" -var "folder_id=${{secrets.YC_CLOUD_ID}}" -var "yc_iam_token=${{steps.issue-iam-token.outputs}}"
