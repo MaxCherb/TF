@@ -34,5 +34,5 @@ jobs:
           enable-cache: true
 
 
-      - run: echo ${{ secrets.YC_OATH_TOKEN }} >> yc init
+      - run: echo ${{ secrets.YC_OATH_TOKEN }} | yc init
       - run: yc iam create-token
