@@ -1,11 +1,14 @@
 name: Terraform plan
 
-on: 
-  pull_request:
+on:
+  push:
     branches:
-      - main
-    types:
-      - opened
+      - test
+#   pull_request:
+#     branches:
+#       - main
+#     types:
+#       - opened
   
 # env:
 #   TF_CLOUD_ORGANIZATION: "yandex-cloud"
