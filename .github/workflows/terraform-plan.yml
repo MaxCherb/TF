@@ -10,11 +10,11 @@ on:
 #     types:
 #       - opened
   
-env:
-#   TF_CLOUD_ORGANIZATION: "yandex-cloud"
-  YC_PUBLIC_KEY: "${{ vars.YC_PUBLIC_KEY }}"
-#   TF_WORKSPACE: "learn-terraform-github-actions"
-#   CONFIG_DIRECTORY: "./"
+# env:
+# #   TF_CLOUD_ORGANIZATION: "yandex-cloud"
+#   YC_PUBLIC_KEY: "${{ vars.YC_PUBLIC_KEY }}"
+# #   TF_WORKSPACE: "learn-terraform-github-actions"
+# #   CONFIG_DIRECTORY: "./"
 
 jobs: 
   openning:
@@ -28,18 +28,18 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
 
-      - name: setup yc
-        uses: nightstory/setup-yc@v1
-        with:
-          enable-cache: true
-      - name: common commands
-        run: ls && pwd
+    #   - name: setup yc
+    #     uses: nightstory/setup-yc@v1
+    #     with:
+    #       enable-cache: true
+    #   - name: common commands
+    #     run: ls && pwd
 
       - name: IAM Token
         id: issue-iam-token
         uses: yc-actions/yc-iam-token@v1
         with:
-        #   yc-key-id: ${{ secrets.YC_KEY_ID }}
-        #   yc-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
-        #   yc-private-key: ${{ secrets.YC_PRIVATE_KEY }}
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
+      - name: Plan
+        run: terraform plan -var "cloud_id=${{secrets.YC_CLOUD_ID}}" -var "folder_id=${{secrets.YC_CLOUD_ID}}" -var "yc_iam_token=${{steps.issue-iam-token}}"
