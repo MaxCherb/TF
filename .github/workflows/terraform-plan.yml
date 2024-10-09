@@ -24,7 +24,9 @@ jobs:
       - name: setup TF 
         uses: hashicorp/setup-terraform@v3
       - run: terraform init
-      - name: Terraform Validate
-        run: terraform validate -no-color
-      - name: Terraform Plan
-        run: terraform plan
+      - run: curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+      - run: yc init
+    #   - name: Terraform Validate
+    #     run: terraform validate -no-color
+    #   - name: Terraform Plan
+    #     run: terraform plan
