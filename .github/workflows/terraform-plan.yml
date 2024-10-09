@@ -39,6 +39,7 @@ jobs:
         id: issue-iam-token
         uses: yc-actions/yc-iam-token@v1
         with:
-          yc-key-id: ${{ secrets.YC_KEY_ID }}
-          yc-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
-          yc-private-key: ${{ secrets.YC_PRIVATE_KEY }}
+        #   yc-key-id: ${{ secrets.YC_KEY_ID }}
+        #   yc-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
+        #   yc-private-key: ${{ secrets.YC_PRIVATE_KEY }}
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
