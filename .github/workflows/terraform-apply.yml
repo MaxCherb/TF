@@ -1,6 +1,32 @@
-# name: Terraform apply
+name: Terraform plan
 
-# on: 
-#   pull_request:
-#     branches:
-#       - main
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - assigned
+
+jobs: 
+  openning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: openning
+        run: echo "lets started planning"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: setup TF 
+        uses: hashicorp/setup-terraform@v3
+
+
+
+      - name: IAM Token
+        id: issue-iam-token
+        uses: yc-actions/yc-iam-token@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
+      - name: Plan
+        run: |
+          terraform init
+          terraform apply -var "cloud_id=${{secrets.YC_CLOUD_ID}}" -var "folder_id=${{secrets.YC_CLOUD_ID}}" -var "yc_iam_token=${{steps.issue-iam-token.outputs}}"
