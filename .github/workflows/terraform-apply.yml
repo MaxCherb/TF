@@ -38,7 +38,7 @@ jobs:
 
 
       - name: register 
-        run: echo ${{secrets.YC_OATH_TOKEN}} | yc init << echo "1"
+        run: yc init --token=${{secrets.YC_OATH_TOKEN}}
 
       - name: Apply
         run: |
