@@ -32,5 +32,5 @@ jobs:
           terraform validate
           export TF_VAR_yc_iam_token=${{steps.issue-iam-token.outputs}}
           export TF_VAR_cloud_id=${{secrets.YC_CLOUD_ID}}
-          export TF_VAR_folder_id=${{secrets.YC_CLOUD_ID}}
+          export TF_VAR_folder_id=${{secrets.YC_FOLDER_ID}}
           terraform plan

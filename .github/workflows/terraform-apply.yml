@@ -10,6 +10,8 @@ on:
     branches:
       - test
 
+env: 
+  
 
 jobs: 
   if_merged:
@@ -36,23 +38,11 @@ jobs:
         with:
           enable-cache: true
 
-      # # Oauth Token ${{secrets.YC_OATH_TOKEN}}
-      # - name: register 
-      #   run: yc init --jq
-      - name: setting configs
-        id: oauth-config
-        run: |
-          yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
-          echo "1" | yc init
-
-          yc config list
-          
-
       - name: Apply
         run: |
           terraform init
           terraform validate
           export TF_VAR_yc_iam_token=${{steps.issue-iam-token.outputs}}
           export TF_VAR_cloud_id=${{secrets.YC_CLOUD_ID}}
-          export TF_VAR_folder_id=${{secrets.YC_CLOUD_ID}}
+          export TF_VAR_folder_id=${{secrets.YC_FOLDER_ID}}
           terraform apply -auto-approve
