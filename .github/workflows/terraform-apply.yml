@@ -1,11 +1,15 @@
 name: Terraform apply
 
 on:
-  pull_request:
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types:
+  #     - closed
+  push:
     branches:
-      - main
-    types:
-      - closed
+      - test
+
 
 jobs: 
   if_merged:
@@ -32,9 +36,9 @@ jobs:
         with:
           enable-cache: true
 
-          
-      - name: register 
-        run: echo ${{secrets.YC_OATH_TOKEN}} | yc init
+
+      # - name: register 
+      #   run: echo ${{secrets.YC_OATH_TOKEN}} | yc init
 
       - name: Apply
         run: |
