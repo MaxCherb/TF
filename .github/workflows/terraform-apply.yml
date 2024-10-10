@@ -27,6 +27,15 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
+      - name: setup Yandex Cloud
+        uses: nightstory/setup-yc@v1
+        with:
+          enable-cache: true
+
+          
+      - name: register 
+        run: echo ${{secrets.YC_OATH_TOKEN}} | yc init
+
       - name: Apply
         run: |
           terraform init
