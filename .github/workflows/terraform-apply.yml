@@ -40,7 +40,9 @@ jobs:
       # - name: register 
       #   run: yc init --jq
       - name: setting configs
-        run: yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
+        run: |
+          yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
+          yc config list
 
       - name: Apply
         run: |
