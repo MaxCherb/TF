@@ -31,18 +31,19 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-      - name: setup Yandex Cloud
-        uses: nightstory/setup-yc@v1
-        with:
-          enable-cache: true
+      # - name: setup Yandex Cloud
+      #   uses: nightstory/setup-yc@v1
+      #   with:
+      #     enable-cache: true
 
       # # Oauth Token ${{secrets.YC_OATH_TOKEN}}
       # - name: register 
       #   run: yc init --jq
-      - name: setting configs
-        run: |
-          yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
-          yc config list
+      # - name: setting configs
+      #   id: oauth-config
+      #   run: |
+      #     yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
+      #     yc config list
 
       - name: Apply
         run: |
