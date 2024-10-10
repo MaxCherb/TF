@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: openning
-        run: echo "let's started applying"
+        run: echo "lets started applying"
       - name: Checkout
         uses: actions/checkout@v4
       - name: setup TF 
