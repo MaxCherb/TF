@@ -10,7 +10,7 @@ on:
     branches:
       - test
 
-env: 
+# env: 
   
 
 jobs: 
