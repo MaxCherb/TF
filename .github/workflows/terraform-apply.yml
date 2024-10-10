@@ -1,15 +1,21 @@
 name: Terraform apply
 
 on:
-  pull_request:
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types:
+  #     - closed
+  push:
     branches:
-      - main
-    types:
-      - closed
+      - test
+
+# env: 
+  
 
 jobs: 
   if_merged:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: openning
@@ -27,20 +33,23 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-      - name: setup Yandex Cloud
-        uses: nightstory/setup-yc@v1
-        with:
-          enable-cache: true
+           
+      - name: setting configs
+        run: |
+          echo ${{ steps.issue-iam-token.outputs.token }}
+      #     yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
+      #     yc config set --cloud-id=true cloud-id ${{secrets.YC_CLOUD_ID}}
+      #     yc config set --folder-id=true folder-id ${{secrets.YC_FOLDER_ID}}
+      #     yc config set compute-default-zone "ru-central1-a"
+      #     yc config list
 
-          
-      - name: register 
-        run: echo ${{secrets.YC_OATH_TOKEN}} | yc init
+
 
       - name: Apply
         run: |
           terraform init
           terraform validate
-          export TF_VAR_yc_iam_token=${{steps.issue-iam-token.outputs}}
-          export TF_VAR_cloud_id=${{secrets.YC_CLOUD_ID}}
-          export TF_VAR_folder_id=${{secrets.YC_CLOUD_ID}}
+          export TF_VAR_yc_iam_token=${{ steps.issue-iam-token.outputs.token }}
+          export TF_VAR_cloud_id=${{ secrets.YC_CLOUD_ID }}
+          export TF_VAR_folder_id=${{ secrets.YC_FOLDER_ID }}
           terraform apply -auto-approve
