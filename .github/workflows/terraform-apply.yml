@@ -33,13 +33,10 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-      # - name: setup Yandex Cloud
-      #   uses: nightstory/setup-yc@v1
-      #   with:
-      #     enable-cache: true
+           
       - name: setting configs
         run: |
-          echo ${{steps.issue-iam-token}}
+          echo ${{ steps.issue-iam-token.conclusion }}
       #     yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
       #     yc config set --cloud-id=true cloud-id ${{secrets.YC_CLOUD_ID}}
       #     yc config set --folder-id=true folder-id ${{secrets.YC_FOLDER_ID}}
@@ -48,11 +45,11 @@ jobs:
 
 
 
-      - name: Apply
-        run: |
-          terraform init
-          terraform validate
-          export TF_VAR_yc_iam_token=${{steps.issue-iam-token.outputs}}
-          export TF_VAR_cloud_id=${{secrets.YC_CLOUD_ID}}
-          export TF_VAR_folder_id=${{secrets.YC_FOLDER_ID}}
-          terraform apply -auto-approve
+      # - name: Apply
+      #   run: |
+      #     terraform init
+      #     terraform validate
+      #     export TF_VAR_yc_iam_token=${{steps.issue-iam-token.outputs}}
+      #     export TF_VAR_cloud_id=${{secrets.YC_CLOUD_ID}}
+      #     export TF_VAR_folder_id=${{secrets.YC_FOLDER_ID}}
+      #     terraform apply -auto-approve
