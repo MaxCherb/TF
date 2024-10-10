@@ -26,6 +26,8 @@ jobs:
         uses: yc-actions/yc-iam-token@v1
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+      - name: register Yandex Cloud
+        run: echo ${{secrets.YC_OATH_TOKEN}}
 
       - name: Apply
         run: |
