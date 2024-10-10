@@ -43,8 +43,10 @@ jobs:
         id: oauth-config
         run: |
           yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
+          echo "1" | yc init
+
           yc config list
-          yc init
+          
 
       - name: Apply
         run: |
