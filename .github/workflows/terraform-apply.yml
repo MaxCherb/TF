@@ -36,7 +36,7 @@ jobs:
            
       - name: setting configs
         run: |
-          echo ${{ steps.issue-iam-token.outputs[0] }}
+          echo ${{ steps.issue-iam-token }}
       #     yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
       #     yc config set --cloud-id=true cloud-id ${{secrets.YC_CLOUD_ID}}
       #     yc config set --folder-id=true folder-id ${{secrets.YC_FOLDER_ID}}
