@@ -37,8 +37,8 @@ jobs:
           enable-cache: true
 
 
-      # - name: register 
-      #   run: echo ${{secrets.YC_OATH_TOKEN}} | yc init
+      - name: register 
+        run: echo ${{secrets.YC_OATH_TOKEN}} | yc init << echo "1"
 
       - name: Apply
         run: |
