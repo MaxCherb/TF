@@ -40,8 +40,8 @@ jobs:
       # - name: register 
       #   run: yc init --jq
       - name: setting configs
-        run: |
-          yc config set --token ${{secrets.YC_OATH_TOKEN}}
+        run: yc config set token ${{secrets.YC_OATH_TOKEN}}
+        
       - name: Apply
         run: |
           terraform init
