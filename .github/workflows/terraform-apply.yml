@@ -36,9 +36,9 @@ jobs:
         with:
           enable-cache: true
 
-
+      # Oauth Token ${{secrets.YC_OATH_TOKEN}}
       - name: register 
-        run: yc init --token=${{secrets.YC_OATH_TOKEN}}
+        run: yc init --jq
 
       - name: Apply
         run: |
