@@ -1,14 +1,14 @@
 name: Terraform apply
 
 on:
-  # pull_request:
-  #   branches:
-  #     - main
-  #   types:
-  #     - closed
-  push:
+  pull_request:
     branches:
-      - test
+      - main
+    types:
+      - closed
+  # push:
+  #   branches:
+  #     - test
 
 # env: 
   
@@ -37,17 +37,12 @@ jobs:
       - name: setting configs
         run: |
           echo ${{ steps.issue-iam-token.outputs.token }}
-      #     yc config set  --token=true token ${{secrets.YC_OATH_TOKEN}}
-      #     yc config set --cloud-id=true cloud-id ${{secrets.YC_CLOUD_ID}}
-      #     yc config set --folder-id=true folder-id ${{secrets.YC_FOLDER_ID}}
-      #     yc config set compute-default-zone "ru-central1-a"
-      #     yc config list
 
 
 
       - name: Apply
         run: |
-          terraform init
+          terraform init 
           terraform validate
           export TF_VAR_yc_iam_token=${{ steps.issue-iam-token.outputs.token }}
           export TF_VAR_cloud_id=${{ secrets.YC_CLOUD_ID }}
