@@ -1,22 +1,13 @@
-terraform {
-  required_providers {
-    yandex = {
-      source = "yandex-cloud/yandex"
-    }
-  }
-  required_version = ">= 0.13"
-}
-
-provider "yandex" {
-  zone      = "ru-central1-a"
-  token     = var.yc_iam_token
-  cloud_id  = var.cloud_id
-  folder_id = var.folder_id
-}
 
 # Создание VPC и подсети
 resource "yandex_vpc_network" "this" {
   name = "private"
+}
+
+#создание сервисного аккаунта
+resource "yandex_iam_service_account" "sa" {
+  name        = "tester"
+  description = "service account to manage VMs"
 }
 
 resource "yandex_vpc_subnet" "private" {
@@ -77,9 +68,9 @@ resource "yandex_vpc_address" "addr" {
 }
 
 // Создание сервисного аккаунта
-resource "yandex_iam_service_account" "sa" {
-  name = "storage-user"
-}
+# resource "yandex_iam_service_account" "sa" {
+#   name = "storage-user"
+# }
 
 // Назначение роли сервисному аккаунту
 resource "yandex_resourcemanager_folder_iam_member" "sa-admin" {
