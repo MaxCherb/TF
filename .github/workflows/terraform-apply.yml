@@ -6,16 +6,12 @@ on:
       - main
     types:
       - closed
-  # push:
-  #   branches:
-  #     - test
 
-# env: 
   
 
 jobs: 
   if_merged:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: openning
