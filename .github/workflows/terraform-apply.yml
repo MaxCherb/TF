@@ -42,7 +42,7 @@ jobs:
 
       - name: Apply
         run: |
-          terraform init 
+          terraform init -backend-config="access_key=${{secrets.BM_ACCESS_KEY}}" -backend-config="secret_key=${{secrets.BM_SECRET_KEY}}"
           terraform validate
           export TF_VAR_yc_iam_token=${{ steps.issue-iam-token.outputs.token }}
           export TF_VAR_cloud_id=${{ secrets.YC_CLOUD_ID }}
