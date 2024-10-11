@@ -7,9 +7,10 @@ terraform {
   
   required_version = ">= 0.13"
   backend "s3" {
-    endpoints = {
-      s3 = "https://storage.yandexcloud.net"
-    }
+    # endpoints = {
+    #   s3 = "https://storage.yandexcloud.net"     
+    # }
+    endpoint = "https://storage.yandexcloud.net"
     bucket = "adlelviha-higs"
     region = "ru-central1"
     key    = "state/terraform.tfstate"
