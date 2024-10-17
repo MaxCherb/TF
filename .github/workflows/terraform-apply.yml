@@ -7,6 +7,8 @@ on:
     types:
       - closed
 
+  
+
 jobs: 
   if_merged:
     if: github.event.pull_request.merged == true
@@ -27,20 +29,18 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-      - name: setup Yandex Cloud
-        uses: nightstory/setup-yc@v1
-        with:
-          enable-cache: true
+           
+      - name: setting configs
+        run: |
+          echo ${{ steps.issue-iam-token.outputs.token }}
 
-          
-      - name: register 
-        run: echo ${{secrets.YC_OATH_TOKEN}} | yc init
+
 
       - name: Apply
         run: |
-          terraform init
+          terraform init -backend-config="access_key=${{secrets.BM_ACCESS_KEY}}" -backend-config="secret_key=${{secrets.BM_SECRET_KEY}}"
           terraform validate
-          export TF_VAR_yc_iam_token=${{steps.issue-iam-token.outputs}}
-          export TF_VAR_cloud_id=${{secrets.YC_CLOUD_ID}}
-          export TF_VAR_folder_id=${{secrets.YC_CLOUD_ID}}
+          export TF_VAR_yc_iam_token=${{ steps.issue-iam-token.outputs.token }}
+          export TF_VAR_cloud_id=${{ secrets.YC_CLOUD_ID }}
+          export TF_VAR_folder_id=${{ secrets.YC_FOLDER_ID }}
           terraform apply -auto-approve
